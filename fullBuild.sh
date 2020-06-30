@@ -6,7 +6,7 @@ read -p 'Deploy Datapack [y/n]: ' DEPLOYDP
 # EDIT the USRPREFIX variable to better represent your SFDX project
 USRPREFIX='ido-'$(date +%s)
 USRNAME=$USRPREFIX'@example.com'
-PROJECTNAME="IDO Project Name"
+PROJECTNAME="IDO Record Marker"
 
 # The below passwords - SCRATCH_PWD is for dataloader as it is run in batch mode - https://help.salesforce.com/articleView?id=loader_batchmode.htm&type=5
 # Pulled from local ENVT variables
@@ -31,9 +31,9 @@ STARTTIME=$(date +%s)
 # EDIT - install any AppExchange / Demo components you need
 #./scripts/bash/installAppEx.sh "Demo Component - Lightning File Gallery "$SFDXALIAS
 
-./scripts/bash/installDependencies.sh "$SFDXALIAS"
+#./scripts/bash/installDependencies.sh "$SFDXALIAS"
 
-./scripts/bash/installFromGithub.sh kakermanis sdo-dependencies
+#./scripts/bash/installFromGithub.sh kakermanis sdo-dependencies
 
 ./scripts/bash/pushLocalSource.sh "$SFDXALIAS"
 
@@ -41,24 +41,14 @@ STARTTIME=$(date +%s)
 
 # EDIT to apply an permission sets that are specific to your scratch org...
 #./scripts/bash/applyPermSets.sh tth_BookingReservation_Data_Model $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Loyalty_Data_Model $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_BookingReservation_Data_Model $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Reservation_Hospitality_Fields $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Reservation_Airline_Fields $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Traveler_Record $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Rental_Preference_fields $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Hospitality_Preference_fields $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Airline_Preference_fields $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_Customer_360_Features $SFDXALIAS
-./scripts/bash/applyPermSets.sh tth_NBA_Permissions $SFDXALIAS
-./scripts/bash/applyPermSets.sh TTH_SDO_Tools_Extensions $SFDXALIAS
-./scripts/bash/applyPermSets.sh TTH_SDO_Dependencies_Perms $SFDXALIAS
+#./scripts/bash/applyPermSets.sh tth_Loyalty_Data_Model $SFDXALIAS
+
 
 if [ "$DEPLOYDP" == 'n' ]; then
   echo
   echo 'This is a local build, loading SFDX dataset...'
   echo
-  ./scripts/bash/loadDevData.sh "$SFDXALIAS"
+  #./scripts/bash/loadDevData.sh "$SFDXALIAS"
 fi
 
 
@@ -70,15 +60,15 @@ if [ "$DEPLOYDP" == 'y' ]; then
   ./scripts/bash/loadProdData.sh $USRNAME $SCRATCH_PWD https://test.salesforce.com
 
   # EDIT - run any custom annon APEX scripts you need post data load
-  ./scripts/bash/runApexScript.sh "scripts/apex/applyBookingImages.apex" $SFDXALIAS
+#  ./scripts/bash/runApexScript.sh "scripts/apex/applyBookingImages.apex" $SFDXALIAS
 fi
 
-./scripts/bash/runApexScript.sh "scripts/apex/applyNBAIcons.apex" $SFDXALIAS
+#./scripts/bash/runApexScript.sh "scripts/apex/applyNBAIcons.apex" $SFDXALIAS
 
 #sfdx force:apex:execute -f scripts/apex/applyBookingImages.apex -u $SFDXALIAS
 #sfdx force:apex:execute -f scripts/apex/applyNBAIcons.apex -u $SFDXALIAS
 # EDIT - run any other post installation scripts you need
-sfdx shane:theme:activate -n THDark -u $SFDXALIAS
+#sfdx shane:theme:activate -n THDark -u $SFDXALIAS
 
 ENDTIME=$(date +%s)
 BUILD_TIME_SEC=$(($ENDTIME - $STARTTIME))
