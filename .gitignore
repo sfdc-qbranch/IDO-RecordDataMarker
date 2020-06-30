@@ -39,3 +39,6 @@ tth-/main/default/flexipages/LightningService_UtilityBar.flexipage-meta.xml
 #tth-/main/default/layouts
 #tth-/main/default/tabs
 #tth-/main/default/flexipages
+
+bin/dataloader/dataloader.jar
+force-app/main/default/wave
