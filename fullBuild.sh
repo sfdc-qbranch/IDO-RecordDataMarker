@@ -40,8 +40,7 @@ STARTTIME=$(date +%s)
 
 
 # EDIT to apply an permission sets that are specific to your scratch org...
-#./scripts/bash/applyPermSets.sh tth_BookingReservation_Data_Model $SFDXALIAS
-#./scripts/bash/applyPermSets.sh tth_Loyalty_Data_Model $SFDXALIAS
+./scripts/bash/applyPermSets.sh IDO_Record_Data_Fields $SFDXALIAS
 
 
 if [ "$DEPLOYDP" == 'n' ]; then
