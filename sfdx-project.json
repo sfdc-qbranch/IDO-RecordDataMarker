@@ -12,6 +12,7 @@
     "sfdcLoginUrl": "https://login.salesforce.com",
     "sourceApiVersion": "48.0",
     "packageAliases": {
-        "IDO Record Data Marker": "0Ho0o000000KyyBCAS"
+        "IDO Record Data Marker": "0Ho0o000000KyyBCAS",
+        "IDO Record Data Marker@0.1.0-1": "04t0o000003YqGMAA0"
     }
 }
